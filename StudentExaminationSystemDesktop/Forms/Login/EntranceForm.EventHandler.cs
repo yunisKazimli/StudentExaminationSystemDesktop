@@ -1,6 +1,6 @@
 ﻿using AspConnectionManagement;
 using DevExpress.XtraEditors;
-using StudentExaminationSystemDesktop.Admin;
+using StudentExaminationSystemDesktop.Forms.Admin;
 using StudentExaminationSystemDesktop.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -8,12 +8,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entities.DTOs.Identity;
 
-namespace StudentExaminationSystemDesktop.Login
+namespace StudentExaminationSystemDesktop.Forms.Login
 {
     public partial class EntranceForm
     {
         private MainForm _mainForm;
+
+        private void Login()
+        {
+            try
+            {
+                CheckInputParameter();
+            }
+            catch (BaseException be)
+            {
+                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+            SendUrl();
+        }
 
         private void CheckInputParameter()
         {
@@ -32,7 +49,7 @@ namespace StudentExaminationSystemDesktop.Login
                 {
                     UrlParameterContainer parameters = new UrlParameterContainer();
 
-                    parameters.AddParameter("data", new { Username = userNameTextEdit.Text, Password = passwordTextEdit.Text }, false);
+                    parameters.AddParameter("data", new LoginDTO() { Username = userNameTextEdit.Text, Password = passwordTextEdit.Text}, false);
 
                     urlBuilder.UrlStartPart = "https://localhost:7199/";
 

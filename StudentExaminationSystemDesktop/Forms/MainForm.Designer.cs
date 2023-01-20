@@ -1,4 +1,4 @@
-﻿namespace StudentExaminationSystemDesktop
+﻿namespace StudentExaminationSystemDesktop.Forms
 {
     partial class MainForm
     {

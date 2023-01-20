@@ -93,11 +93,7 @@ namespace AspConnectionManagement
                     }
                     else
                     {
-                        string responseResult = response.Content.ReadAsStringAsync().Result;
-
-                        HttpResponseContainer responseErrorContainer = JsonConvert.DeserializeObject<HttpResponseContainer>(responseResult);
-
-                        throw new Exception("Http response error status : " + responseErrorContainer.status + "\n" + responseErrorContainer.detail);
+                        throw new Exception("Http response error status : " + response.StatusCode + "\n" + response.ReasonPhrase);
                     }
                 }
             }
@@ -113,6 +109,8 @@ namespace AspConnectionManagement
             {
                 using (var client = new HttpClient())
                 {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+
                     string jsonData = JsonConvert.SerializeObject(Parameters.GetParameterList()["data"]);
 
                     FormUrlEncodedContent content =
@@ -132,11 +130,7 @@ namespace AspConnectionManagement
                     }
                     else
                     {
-                        string responseResult = response.Content.ReadAsStringAsync().Result;
-
-                        HttpResponseContainer responseErrorContainer = JsonConvert.DeserializeObject<HttpResponseContainer>(responseResult);
-
-                        throw new Exception("Http response error status : " + responseErrorContainer.status + "\n" + responseErrorContainer.detail);
+                        throw new Exception("Http response error status : " + response.StatusCode + "\n" + response.ReasonPhrase);
                     }
                 }
             }

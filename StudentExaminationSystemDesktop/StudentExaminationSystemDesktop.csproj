@@ -176,13 +176,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\AdminForm.cs">
+    <Compile Include="DTOs\Examination\AllStudentAnswersIdsDTO.cs" />
+    <Compile Include="DTOs\Examination\GetDTOs\GroupGetDTO.cs" />
+    <Compile Include="DTOs\Examination\GetDTOs\OptionGetDTO.cs" />
+    <Compile Include="DTOs\Examination\GetDTOs\QuestionGetDTO.cs" />
+    <Compile Include="DTOs\Examination\GetDTOs\StudentAnswerGetDTO.cs" />
+    <Compile Include="DTOs\Examination\GroupDTO.cs" />
+    <Compile Include="DTOs\Examination\OptionDTO.cs" />
+    <Compile Include="DTOs\Examination\QuestionDTO.cs" />
+    <Compile Include="DTOs\Examination\StudentAnswerDTO.cs" />
+    <Compile Include="DTOs\Examination\UserToGroupDTO.cs" />
+    <Compile Include="DTOs\Identity\GetDTOs\RoleGetDTO.cs" />
+    <Compile Include="DTOs\Identity\GetDTOs\UserGetDTO.cs" />
+    <Compile Include="DTOs\Identity\LoginDTO.cs" />
+    <Compile Include="DTOs\Identity\RegisterDTO.cs" />
+    <Compile Include="Forms\Admin\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Admin\AdminForm.Designer.cs">
+    <Compile Include="Forms\Admin\AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\AdminForm.EventHandler.cs">
+    <Compile Include="Forms\Admin\AdminForm.EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\DialogForms\AddUser\AddUserDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\DialogForms\AddUser\AddUserDialogForm.Designer.cs">
+      <DependentUpon>AddUserDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\DialogForms\AddUser\AddUserDialogForm.EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\Enums\Role.cs" />
+    <Compile Include="Forms\Admin\SubForms\ShowUser\ShowUsersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\SubForms\ShowUser\ShowUsersForm.Designer.cs">
+      <DependentUpon>ShowUsersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\SubForms\ShowUser\ShowUsersForm.EventHandler.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AspConnectionManagement\HttpRequestTypeEnum.cs" />
@@ -192,33 +225,39 @@
     <Compile Include="AspConnectionManagement\UrlParameterContainer.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
     <Compile Include="Exceptions\BaseParameterException.cs" />
-    <Compile Include="Login\EntranceForm.EventHandler.cs">
+    <Compile Include="Forms\Login\EntranceForm.EventHandler.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\EntranceForm.cs">
+    <Compile Include="Forms\Login\EntranceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\EntranceForm.Designer.cs">
+    <Compile Include="Forms\Login\EntranceForm.Designer.cs">
       <DependentUpon>EntranceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.EventHandler.cs">
+    <Compile Include="Forms\MainForm.EventHandler.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Admin\AdminForm.resx">
+    <EmbeddedResource Include="Forms\Admin\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\EntranceForm.resx">
+    <EmbeddedResource Include="Forms\Admin\DialogForms\AddUser\AddUserDialogForm.resx">
+      <DependentUpon>AddUserDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\SubForms\ShowUser\ShowUsersForm.resx">
+      <DependentUpon>ShowUsersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login\EntranceForm.resx">
       <DependentUpon>EntranceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

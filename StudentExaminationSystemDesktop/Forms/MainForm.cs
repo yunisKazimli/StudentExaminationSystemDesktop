@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace StudentExaminationSystemDesktop
+namespace StudentExaminationSystemDesktop.Forms
 {
     public partial class MainForm : XtraForm
     {

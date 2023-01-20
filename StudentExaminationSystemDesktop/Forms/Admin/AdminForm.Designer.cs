@@ -1,4 +1,4 @@
-﻿namespace StudentExaminationSystemDesktop.Admin
+﻿namespace StudentExaminationSystemDesktop.Forms.Admin
 {
     partial class AdminForm
     {
@@ -42,7 +42,16 @@
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.subFormPanelControl = new DevExpress.XtraEditors.PanelControl();
+            this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
+            this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.subFormPanelControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbon
@@ -70,56 +79,59 @@
             // 
             this.showUsersBarButtonItem.Caption = "Show";
             this.showUsersBarButtonItem.Id = 1;
-            this.showUsersBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.showUsersBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.showUsersBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("showUsersBarButtonItem.ImageOptions.Image")));
+            this.showUsersBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("showUsersBarButtonItem.ImageOptions.LargeImage")));
             this.showUsersBarButtonItem.Name = "showUsersBarButtonItem";
+            this.showUsersBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.showUsersBarButtonItem_ItemClick);
             // 
             // addUsersBarButtonItem
             // 
             this.addUsersBarButtonItem.Caption = "Add";
             this.addUsersBarButtonItem.Id = 2;
-            this.addUsersBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.addUsersBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
+            this.addUsersBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addUsersBarButtonItem.ImageOptions.Image")));
+            this.addUsersBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addUsersBarButtonItem.ImageOptions.LargeImage")));
             this.addUsersBarButtonItem.Name = "addUsersBarButtonItem";
+            this.addUsersBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addUsersBarButtonItem_ItemClick);
             // 
             // deleteUsersBarButtonItem
             // 
             this.deleteUsersBarButtonItem.Caption = "Delete";
             this.deleteUsersBarButtonItem.Id = 3;
-            this.deleteUsersBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.deleteUsersBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
+            this.deleteUsersBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("deleteUsersBarButtonItem.ImageOptions.Image")));
+            this.deleteUsersBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("deleteUsersBarButtonItem.ImageOptions.LargeImage")));
             this.deleteUsersBarButtonItem.Name = "deleteUsersBarButtonItem";
+            this.deleteUsersBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteUsersBarButtonItem_ItemClick);
             // 
             // showGroupsBarButtonItem
             // 
             this.showGroupsBarButtonItem.Caption = "Show";
             this.showGroupsBarButtonItem.Id = 4;
-            this.showGroupsBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.Image")));
-            this.showGroupsBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.LargeImage")));
+            this.showGroupsBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("showGroupsBarButtonItem.ImageOptions.Image")));
+            this.showGroupsBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("showGroupsBarButtonItem.ImageOptions.LargeImage")));
             this.showGroupsBarButtonItem.Name = "showGroupsBarButtonItem";
             // 
             // addGroupsBarButtonItem
             // 
             this.addGroupsBarButtonItem.Caption = "Add";
             this.addGroupsBarButtonItem.Id = 5;
-            this.addGroupsBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.Image")));
-            this.addGroupsBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.LargeImage")));
+            this.addGroupsBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addGroupsBarButtonItem.ImageOptions.Image")));
+            this.addGroupsBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addGroupsBarButtonItem.ImageOptions.LargeImage")));
             this.addGroupsBarButtonItem.Name = "addGroupsBarButtonItem";
             // 
             // deleteGroupsBarButtonItem
             // 
             this.deleteGroupsBarButtonItem.Caption = "Delete";
             this.deleteGroupsBarButtonItem.Id = 6;
-            this.deleteGroupsBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.Image")));
-            this.deleteGroupsBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.LargeImage")));
+            this.deleteGroupsBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("deleteGroupsBarButtonItem.ImageOptions.Image")));
+            this.deleteGroupsBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("deleteGroupsBarButtonItem.ImageOptions.LargeImage")));
             this.deleteGroupsBarButtonItem.Name = "deleteGroupsBarButtonItem";
             // 
             // logoutBarButtonItem
             // 
             this.logoutBarButtonItem.Caption = "Logout";
             this.logoutBarButtonItem.Id = 7;
-            this.logoutBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem7.ImageOptions.Image")));
-            this.logoutBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem7.ImageOptions.LargeImage")));
+            this.logoutBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("logoutBarButtonItem.ImageOptions.Image")));
+            this.logoutBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("logoutBarButtonItem.ImageOptions.LargeImage")));
             this.logoutBarButtonItem.Name = "logoutBarButtonItem";
             this.logoutBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.logoutBarButtonItem_ItemClick);
             // 
@@ -162,12 +174,50 @@
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(1045, 24);
             // 
+            // layoutControl1
+            // 
+            this.layoutControl1.Controls.Add(this.subFormPanelControl);
+            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl1.Location = new System.Drawing.Point(0, 158);
+            this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.Root = this.Root;
+            this.layoutControl1.Size = new System.Drawing.Size(1045, 390);
+            this.layoutControl1.TabIndex = 6;
+            this.layoutControl1.Text = "layoutControl1";
+            // 
+            // subFormPanelControl
+            // 
+            this.subFormPanelControl.Location = new System.Drawing.Point(12, 12);
+            this.subFormPanelControl.Name = "subFormPanelControl";
+            this.subFormPanelControl.Size = new System.Drawing.Size(1021, 366);
+            this.subFormPanelControl.TabIndex = 4;
+            // 
+            // Root
+            // 
+            this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.Root.GroupBordersVisible = false;
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem1});
+            this.Root.Name = "Root";
+            this.Root.Size = new System.Drawing.Size(1045, 390);
+            this.Root.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.subFormPanelControl;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(1025, 370);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1045, 572);
             this.ControlBox = false;
+            this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
             this.Name = "AdminForm";
@@ -175,6 +225,11 @@
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "AdminForm";
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
+            this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.subFormPanelControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,5 +250,9 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem addGroupsBarButtonItem;
+        private DevExpress.XtraLayout.LayoutControl layoutControl1;
+        private DevExpress.XtraEditors.PanelControl subFormPanelControl;
+        private DevExpress.XtraLayout.LayoutControlGroup Root;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
     }
 }

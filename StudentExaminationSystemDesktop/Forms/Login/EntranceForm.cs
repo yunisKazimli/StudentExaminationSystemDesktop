@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace StudentExaminationSystemDesktop.Login
+namespace StudentExaminationSystemDesktop.Forms.Login
 {
     public partial class EntranceForm : XtraForm
     {
@@ -23,18 +23,7 @@ namespace StudentExaminationSystemDesktop.Login
 
         private void loginSimpleButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                CheckInputParameter();
-            }
-            catch(BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
-            }
-
-            SendUrl();
+            Login();
         }
     }
 }

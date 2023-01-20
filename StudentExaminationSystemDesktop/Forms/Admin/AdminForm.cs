@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace StudentExaminationSystemDesktop.Admin
+namespace StudentExaminationSystemDesktop.Forms.Admin
 {
     public partial class AdminForm : DevExpress.XtraBars.Ribbon.RibbonForm
     {
@@ -28,6 +28,21 @@ namespace StudentExaminationSystemDesktop.Admin
         private void logoutBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
         {
             Logout();
+        }
+
+        private void showUsersBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowUsers();
+        }
+
+        private void addUsersBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AddUser();
+        }
+
+        private void deleteUsersBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DeleteUser();
         }
     }
 }

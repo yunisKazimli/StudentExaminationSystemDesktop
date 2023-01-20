@@ -1,4 +1,4 @@
-﻿namespace StudentExaminationSystemDesktop.Login
+﻿namespace StudentExaminationSystemDesktop.Forms.Login
 {
     partial class EntranceForm
     {
