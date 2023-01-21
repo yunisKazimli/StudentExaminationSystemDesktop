@@ -37,6 +37,8 @@
             this.addGroupsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.deleteGroupsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.logoutBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.addUserToGroupBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.deleteUserFromGroupBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -66,9 +68,11 @@
             this.showGroupsBarButtonItem,
             this.addGroupsBarButtonItem,
             this.deleteGroupsBarButtonItem,
-            this.logoutBarButtonItem});
+            this.logoutBarButtonItem,
+            this.addUserToGroupBarButtonItem,
+            this.deleteUserFromGroupBarButtonItem});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 8;
+            this.ribbon.MaxItemId = 10;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -109,6 +113,7 @@
             this.showGroupsBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("showGroupsBarButtonItem.ImageOptions.Image")));
             this.showGroupsBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("showGroupsBarButtonItem.ImageOptions.LargeImage")));
             this.showGroupsBarButtonItem.Name = "showGroupsBarButtonItem";
+            this.showGroupsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.showGroupsBarButtonItem_ItemClick);
             // 
             // addGroupsBarButtonItem
             // 
@@ -117,6 +122,7 @@
             this.addGroupsBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addGroupsBarButtonItem.ImageOptions.Image")));
             this.addGroupsBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addGroupsBarButtonItem.ImageOptions.LargeImage")));
             this.addGroupsBarButtonItem.Name = "addGroupsBarButtonItem";
+            this.addGroupsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addGroupsBarButtonItem_ItemClick);
             // 
             // deleteGroupsBarButtonItem
             // 
@@ -125,6 +131,7 @@
             this.deleteGroupsBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("deleteGroupsBarButtonItem.ImageOptions.Image")));
             this.deleteGroupsBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("deleteGroupsBarButtonItem.ImageOptions.LargeImage")));
             this.deleteGroupsBarButtonItem.Name = "deleteGroupsBarButtonItem";
+            this.deleteGroupsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteGroupsBarButtonItem_ItemClick);
             // 
             // logoutBarButtonItem
             // 
@@ -134,6 +141,24 @@
             this.logoutBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("logoutBarButtonItem.ImageOptions.LargeImage")));
             this.logoutBarButtonItem.Name = "logoutBarButtonItem";
             this.logoutBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.logoutBarButtonItem_ItemClick);
+            // 
+            // addUserToGroupBarButtonItem
+            // 
+            this.addUserToGroupBarButtonItem.Caption = "Add user to";
+            this.addUserToGroupBarButtonItem.Id = 8;
+            this.addUserToGroupBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("addUserToGroupBarButtonItem.ImageOptions.Image")));
+            this.addUserToGroupBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("addUserToGroupBarButtonItem.ImageOptions.LargeImage")));
+            this.addUserToGroupBarButtonItem.Name = "addUserToGroupBarButtonItem";
+            this.addUserToGroupBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addUserToGroupBarButtonItem_ItemClick);
+            // 
+            // deleteUserFromGroupBarButtonItem
+            // 
+            this.deleteUserFromGroupBarButtonItem.Caption = "Delete user from";
+            this.deleteUserFromGroupBarButtonItem.Id = 9;
+            this.deleteUserFromGroupBarButtonItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("deleteUserFromGroupBarButtonItem.ImageOptions.Image")));
+            this.deleteUserFromGroupBarButtonItem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("deleteUserFromGroupBarButtonItem.ImageOptions.LargeImage")));
+            this.deleteUserFromGroupBarButtonItem.Name = "deleteUserFromGroupBarButtonItem";
+            this.deleteUserFromGroupBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteUserFromGroupBarButtonItem_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -158,6 +183,8 @@
             this.ribbonPageGroup2.ItemLinks.Add(this.showGroupsBarButtonItem);
             this.ribbonPageGroup2.ItemLinks.Add(this.addGroupsBarButtonItem);
             this.ribbonPageGroup2.ItemLinks.Add(this.deleteGroupsBarButtonItem);
+            this.ribbonPageGroup2.ItemLinks.Add(this.addUserToGroupBarButtonItem);
+            this.ribbonPageGroup2.ItemLinks.Add(this.deleteUserFromGroupBarButtonItem);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Groups";
             // 
@@ -254,5 +281,7 @@
         private DevExpress.XtraEditors.PanelControl subFormPanelControl;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraBars.BarButtonItem addUserToGroupBarButtonItem;
+        private DevExpress.XtraBars.BarButtonItem deleteUserFromGroupBarButtonItem;
     }
 }

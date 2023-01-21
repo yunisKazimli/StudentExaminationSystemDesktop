@@ -44,5 +44,30 @@ namespace StudentExaminationSystemDesktop.Forms.Admin
         {
             DeleteUser();
         }
+
+        private void showGroupsBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShowGroups();
+        }
+
+        private void addGroupsBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AddGroup();
+        }
+
+        private void deleteGroupsBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DeleteGroup();
+        }
+
+        private void addUserToGroupBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AddUserToGroup();
+        }
+
+        private void deleteUserFromGroupBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DeleteUserFromGroup();
+        }
     }
 }

@@ -10,19 +10,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteUser
+namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddGroup
 {
-    public partial class DeleteUserDialogForm : XtraForm
+    public partial class AddGroupDialogForm : DevExpress.XtraEditors.XtraForm
     {
         private string _token;
 
-        public DeleteUserDialogForm(string token)
+        public AddGroupDialogForm(string token)
         {
             _token = token;
 
             InitializeComponent();
 
-            FillDataInLookUp();
+            GetNecessaryData();
+        }
+
+        private void cancelSimpleButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
 
         private void okSimpleButton_Click(object sender, EventArgs e)
@@ -31,7 +36,7 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteUser
             {
                 CheckEnteredData();
 
-                SendDeleteUserByIdUrl();
+                SendAddGroupUrl();
 
                 DialogResult = DialogResult.OK;
             }
@@ -39,11 +44,6 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteUser
             {
                 XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void cancelSimpleButton_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
         }
     }
 }

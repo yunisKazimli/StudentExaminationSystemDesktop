@@ -93,6 +93,15 @@ namespace AspConnectionManagement
                     }
                     else
                     {
+                        string result = await response.Content.ReadAsStringAsync();
+
+                        if (result != null)
+                        {
+                            HttpResponseContainer httpResponseContainer = JsonConvert.DeserializeObject<HttpResponseContainer>(result);
+
+                            throw new Exception("Server error : " + httpResponseContainer.status + httpResponseContainer.detail);
+                        }
+
                         throw new Exception("Http response error status : " + response.StatusCode + "\n" + response.ReasonPhrase);
                     }
                 }
@@ -130,6 +139,15 @@ namespace AspConnectionManagement
                     }
                     else
                     {
+                        string result = await response.Content.ReadAsStringAsync();
+
+                        if (result != null)
+                        {
+                            HttpResponseContainer httpResponseContainer = JsonConvert.DeserializeObject<HttpResponseContainer>(result);
+
+                            throw new Exception("Server error : " + httpResponseContainer.status + httpResponseContainer.detail);
+                        }
+
                         throw new Exception("Http response error status : " + response.StatusCode + "\n" + response.ReasonPhrase);
                     }
                 }

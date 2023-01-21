@@ -1,42 +1,37 @@
 ﻿using AspConnectionManagement;
-using DevExpress.Office.Utils;
 using DevExpress.XtraEditors;
 using Entities.DTOs.Identity.GetDTOs;
 using Newtonsoft.Json;
 using StudentExaminationSystemDesktop.Exceptions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Data;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DevExpress.XtraEditors.Mask.MaskSettings;
 
 namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteUser
 {
     public partial class DeleteUserDialogForm
     {
-        private Dictionary<string, string> allUsers;
+        private DataTable usersDataTable;
 
-        private async void GetNeccessaryData()
+        private async void FillDataInLookUp()
         {
             string jsonData = await SendGetAllUsersUrl();
 
-            allUsers = GetlAllUsers(jsonData);
+            usersDataTable = GetUsersDTByJsonData(jsonData);
 
-            FillLookUp();
+            usersLookUpEdit.Properties.DataSource = usersDataTable;
+
+            usersLookUpEdit.Properties.DisplayMember = "User Name";
+            usersLookUpEdit.Properties.ValueMember = "User Id";
         }
 
         private void CheckEnteredData()
         {
-            if (allUsers.Where(el => el.Key == usersGridLookUpEdit.Text) == null) 
-                throw new BaseParameterException("Choose user", "Wrong value");
+            if (usersLookUpEdit.EditValue == null) throw new BaseParameterException("Choose user", "Wrong value");
         }
 
-        private void SendDeleteUserUrl()
-        {
-
-        }
         private async Task<string> SendGetAllUsersUrl()
         {
             try
@@ -70,23 +65,58 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteUser
             }
         }
 
-        private Dictionary<string, string> GetlAllUsers(string json)
+        private async void SendDeleteUserByIdUrl()
         {
-            Dictionary<string, string> users = new Dictionary<string, string>();
-
-            List<UserGetDTO> usersDTO = JsonConvert.DeserializeObject<List<UserGetDTO>>(json);
-
-            foreach(UserGetDTO userDTO in usersDTO) 
+            try
             {
-                users.Add(userDTO.UserName, userDTO.Role);
-            }
+                using (UrlBuilder urlBuilder = new UrlBuilder())
+                {
+                    UrlParameterContainer parameters = new UrlParameterContainer();
 
-            return users;
+                    parameters.AddParameter("userId", (Guid)usersLookUpEdit.EditValue, false);
+
+                    urlBuilder.UrlStartPart = "https://localhost:7199/";
+
+                    urlBuilder.UrlAction = "deleteUserById";
+
+                    urlBuilder.Token = _token;
+
+                    urlBuilder.Method = HttpRequestTypeEnum.Get;
+
+                    urlBuilder.Parameters = parameters;
+
+                    urlBuilder.GenerateUrl();
+
+                    await urlBuilder.SubmitRequestAsync();
+                }
+            }
+            catch (BaseException be)
+            {
+                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+            catch (Exception be)
+            {
+                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
         }
 
-        private void FillLookUp()
+        private DataTable GetUsersDTByJsonData(string jsonData)
         {
-            //there is a place where i am supposed to fill my dictionary data in lookup
+            DataTable dt = new DataTable();
+
+            List<UserGetDTO> users = JsonConvert.DeserializeObject<List<UserGetDTO>>(jsonData);
+
+            dt.Columns.Add("User Id", typeof(Guid));
+            dt.Columns.Add("User Name", typeof(string));
+            dt.Columns.Add("User Role", typeof(string));
+
+            foreach (UserGetDTO el in users) dt.Rows.Add(el.UserId, el.UserName, el.Role);
+
+            return dt;
         }
     }
 }

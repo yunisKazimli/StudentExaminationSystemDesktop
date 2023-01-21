@@ -199,6 +199,12 @@
     <Compile Include="Forms\Admin\AdminForm.EventHandler.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Admin\DialogForms\AddGroup\AddGroupDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\DialogForms\AddGroup\AddGroupDialogForm.Designer.cs">
+      <DependentUpon>AddGroupDialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Admin\DialogForms\AddUser\AddUserDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,7 +214,25 @@
     <Compile Include="Forms\Admin\DialogForms\AddUser\AddUserDialogForm.EventHandler.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Admin\DialogForms\DeleteUser\DeleteUserDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\DialogForms\DeleteUser\DeleteUserDialogForm.Designer.cs">
+      <DependentUpon>DeleteUserDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\DialogForms\DeleteUser\DeleteUserDialogForm.EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Admin\Enums\Role.cs" />
+    <Compile Include="Forms\Admin\SubForms\ShowGroups\ShowGroupsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\SubForms\ShowGroups\ShowGroupsForm.Designer.cs">
+      <DependentUpon>ShowGroupsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\SubForms\ShowGroups\ShowGroupsForm.EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Admin\SubForms\ShowUser\ShowUsersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,8 +272,17 @@
     <EmbeddedResource Include="Forms\Admin\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\DialogForms\AddGroup\AddGroupDialogForm.resx">
+      <DependentUpon>AddGroupDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\DialogForms\AddUser\AddUserDialogForm.resx">
       <DependentUpon>AddUserDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\DialogForms\DeleteUser\DeleteUserDialogForm.resx">
+      <DependentUpon>DeleteUserDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\SubForms\ShowGroups\ShowGroupsForm.resx">
+      <DependentUpon>ShowGroupsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\SubForms\ShowUser\ShowUsersForm.resx">
       <DependentUpon>ShowUsersForm.cs</DependentUpon>
@@ -271,6 +304,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="App.config" />
+    <Compile Include="Forms\Admin\DialogForms\AddGroup\AddGroupDialogForm.EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -1,4 +1,5 @@
-﻿using StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddUser;
+﻿using StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddGroup;
+using StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddUser;
 using StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteUser;
 using StudentExaminationSystemDesktop.Forms.Admin.SubForms;
 using StudentExaminationSystemDesktop.Forms.Login;
@@ -31,18 +32,41 @@ namespace StudentExaminationSystemDesktop.Forms.Admin
         {
             AddUserDialogForm addUserDialogForm = new AddUserDialogForm(_token);
 
-            addUserDialogForm.ShowDialog();
-
-            if (subForm != null) ShowUsers();
+            if (addUserDialogForm.ShowDialog() == DialogResult.OK) RefreshSubForm();
         }
 
         private void DeleteUser()
         {
             DeleteUserDialogForm deleteUserDialogForm = new DeleteUserDialogForm(_token);
 
-            deleteUserDialogForm.ShowDialog();
+            if (deleteUserDialogForm.ShowDialog() == DialogResult.OK) RefreshSubForm();
+        }
 
-            if (subForm != null) ShowUsers();
+        private void AddGroup()
+        {
+            AddGroupDialogForm addGroupDialogForm = new AddGroupDialogForm(_token);
+
+            if (addGroupDialogForm.ShowDialog() == DialogResult.OK) RefreshSubForm();
+        }
+
+        private void DeleteGroup()
+        {
+
+        }
+
+        private void AddUserToGroup()
+        {
+
+        }
+
+        private void DeleteUserFromGroup()
+        {
+
+        }
+
+        private void ShowGroups()
+        {
+            OpenForm(new ShowGroupsForm(_token));
         }
 
         private void OpenForm(Form newSubForm)
@@ -64,6 +88,15 @@ namespace StudentExaminationSystemDesktop.Forms.Admin
             subForm.Show();
 
             subFormPanelControl.Controls.Add(subForm);
+        }
+
+        private void RefreshSubForm()
+        {
+            if (subForm != null)
+            {
+                if (subForm is ShowGroupsForm) ShowGroups();
+                else ShowUsers();
+            }
         }
     }
 }
