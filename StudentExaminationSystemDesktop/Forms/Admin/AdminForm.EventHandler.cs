@@ -1,5 +1,6 @@
 ﻿using StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddGroup;
 using StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddUser;
+using StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteGroup;
 using StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteUser;
 using StudentExaminationSystemDesktop.Forms.Admin.SubForms;
 using StudentExaminationSystemDesktop.Forms.Login;
@@ -51,7 +52,9 @@ namespace StudentExaminationSystemDesktop.Forms.Admin
 
         private void DeleteGroup()
         {
+            DeleteGroupDialogForm deleteGroupDialogForm = new DeleteGroupDialogForm(_token);
 
+            if (deleteGroupDialogForm.ShowDialog() == DialogResult.OK) RefreshSubForm();
         }
 
         private void AddUserToGroup()

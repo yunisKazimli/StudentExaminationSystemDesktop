@@ -214,6 +214,15 @@
     <Compile Include="Forms\Admin\DialogForms\AddUser\AddUserDialogForm.EventHandler.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Admin\DialogForms\DeleteGroup\DeleteGroupDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\DialogForms\DeleteGroup\DeleteGroupDialogForm.Designer.cs">
+      <DependentUpon>DeleteGroupDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\DialogForms\DeleteGroup\DeleteGroupDialogForm.EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Admin\DialogForms\DeleteUser\DeleteUserDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\DialogForms\AddUser\AddUserDialogForm.resx">
       <DependentUpon>AddUserDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\DialogForms\DeleteGroup\DeleteGroupDialogForm.resx">
+      <DependentUpon>DeleteGroupDialogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\DialogForms\DeleteUser\DeleteUserDialogForm.resx">
       <DependentUpon>DeleteUserDialogForm.cs</DependentUpon>

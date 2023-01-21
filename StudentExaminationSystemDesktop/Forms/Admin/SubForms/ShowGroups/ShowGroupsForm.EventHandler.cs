@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static DevExpress.XtraEditors.Mask.MaskSettings;
 
 namespace StudentExaminationSystemDesktop.Forms.Admin.SubForms
 {
@@ -35,6 +36,9 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.SubForms
 
             users.Columns.Add("User Id", typeof(Guid));
             users.Columns.Add("User Name", typeof(string));
+
+            users.Columns[0].ReadOnly = true;
+            users.Columns[1].ReadOnly = true;
 
             foreach(UserGetDTO el in currentGroup.Students) users.Rows.Add(el.UserId, el.UserName);
 
@@ -83,7 +87,12 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.SubForms
             groups.Columns.Add("Instructor Name", typeof(string));
             groups.Columns.Add("Student Count", typeof(int));
 
-            foreach(GroupGetDTO el in groupsList)
+            groups.Columns[0].ReadOnly = true;
+            groups.Columns[1].ReadOnly = true;
+            groups.Columns[2].ReadOnly = true;
+            groups.Columns[3].ReadOnly = true;
+
+            foreach (GroupGetDTO el in groupsList)
             {
                 string instructorName;
 
