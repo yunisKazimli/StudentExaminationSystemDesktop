@@ -205,6 +205,15 @@
     <Compile Include="Forms\Admin\DialogForms\AddGroup\AddGroupDialogForm.Designer.cs">
       <DependentUpon>AddGroupDialogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Admin\DialogForms\AddUserToGroup\AddUserToGroupDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\DialogForms\AddUserToGroup\AddUserToGroupDialogForm.Designer.cs">
+      <DependentUpon>AddUserToGroupDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\DialogForms\AddUserToGroup\AddUserToGroupDialogForm.EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Admin\DialogForms\AddUser\AddUserDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +230,15 @@
       <DependentUpon>DeleteGroupDialogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Admin\DialogForms\DeleteGroup\DeleteGroupDialogForm.EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\DialogForms\DeleteUserFromGroup\DeleteUserFromGroupDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\DialogForms\DeleteUserFromGroup\DeleteUserFromGroupDialogForm.Designer.cs">
+      <DependentUpon>DeleteUserFromGroupDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\DialogForms\DeleteUserFromGroup\DeleteUserFromGroupDialogForm.EventHandler.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Admin\DialogForms\DeleteUser\DeleteUserDialogForm.cs">
@@ -284,11 +302,17 @@
     <EmbeddedResource Include="Forms\Admin\DialogForms\AddGroup\AddGroupDialogForm.resx">
       <DependentUpon>AddGroupDialogForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\DialogForms\AddUserToGroup\AddUserToGroupDialogForm.resx">
+      <DependentUpon>AddUserToGroupDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\DialogForms\AddUser\AddUserDialogForm.resx">
       <DependentUpon>AddUserDialogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\DialogForms\DeleteGroup\DeleteGroupDialogForm.resx">
       <DependentUpon>DeleteGroupDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\DialogForms\DeleteUserFromGroup\DeleteUserFromGroupDialogForm.resx">
+      <DependentUpon>DeleteUserFromGroupDialogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\DialogForms\DeleteUser\DeleteUserDialogForm.resx">
       <DependentUpon>DeleteUserDialogForm.cs</DependentUpon>
