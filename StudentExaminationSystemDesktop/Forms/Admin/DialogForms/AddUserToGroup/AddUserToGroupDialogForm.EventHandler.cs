@@ -20,8 +20,8 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddUserToGroup
     {
         private async void GetNecessaryData()
         {
-            FillGroupsLookUp(await SendGetAllGroupsUrl());
-            FillUsersLookUp(await SendGetAllUsersUrl());
+            FillGroupsLookUp();
+            FillUsersLookUp();
         }
 
         private void CheckEnteredValues()
@@ -33,109 +33,9 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddUserToGroup
                 throw new BaseException("Choose user", "Empty value");
         }
 
-        private async void SendAddUserToGroupUrl()
+        private async void SendUrl()
         {
-            try
-            {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    UrlParameterContainer parameters = new UrlParameterContainer();
-
-                    parameters.AddParameter("data", new UserToGroupDTO() { GroupId = ((Guid)groupLookUpEdit.EditValue).ToString(), UserId = ((Guid)userLookUpEdit.EditValue).ToString() }, false);
-
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "addusertogroup";
-
-                    urlBuilder.Token = _token;
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Post;
-
-                    urlBuilder.Parameters = parameters;
-
-                    urlBuilder.GenerateUrl();
-
-                    await urlBuilder.SubmitRequestAsync();
-                }
-            }
-            catch (BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
-            }
-        }
-
-        private async Task<string> SendGetAllGroupsUrl()
-        {
-            try
-            {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "getallgroups";
-
-                    urlBuilder.Token = _token;
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Get;
-
-                    urlBuilder.GenerateUrl();
-
-                    return await urlBuilder.SubmitRequestAsync();
-                }
-            }
-            catch (BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-        }
-
-        private async Task<string> SendGetAllUsersUrl()
-        {
-            try
-            {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "getallusers";
-
-                    urlBuilder.Token = _token;
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Get;
-
-                    urlBuilder.GenerateUrl();
-
-                    return await urlBuilder.SubmitRequestAsync();
-                }
-            }
-            catch (BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
+            UrlManager.UrlSender.SendAddUserToGroupUrl(_token, new UserToGroupDTO() { GroupId = ((Guid)groupLookUpEdit.EditValue).ToString(), UserId = ((Guid)userLookUpEdit.EditValue).ToString() });
         }
 
         private DataTable ConvertGroupListToDt(List<GroupGetDTO> groups)
@@ -184,25 +84,17 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddUserToGroup
             return dt;
         }
 
-        private void FillGroupsLookUp(string json)
+        private async void FillGroupsLookUp()
         {
-            List<GroupGetDTO> groups = new List<GroupGetDTO>();
-
-            groups = JsonConvert.DeserializeObject<List<GroupGetDTO>>(json);
-
-            groupLookUpEdit.Properties.DataSource = ConvertGroupListToDt(groups);
+            groupLookUpEdit.Properties.DataSource = ConvertGroupListToDt(await DataManager.DataGetter.GetGroups(_token));
 
             groupLookUpEdit.Properties.DisplayMember = "Group Name";
             groupLookUpEdit.Properties.ValueMember = "Group Id";
         }
 
-        private void FillUsersLookUp(string json)
+        private async void FillUsersLookUp()
         {
-            List<UserGetDTO> users = new List<UserGetDTO>();
-
-            users = JsonConvert.DeserializeObject<List<UserGetDTO>>(json);
-
-            userLookUpEdit.Properties.DataSource = ConvertUserListToDt(users);
+            userLookUpEdit.Properties.DataSource = ConvertUserListToDt(await DataManager.DataGetter.GetUsers(_token));
 
             userLookUpEdit.Properties.DisplayMember = "User Name";
             userLookUpEdit.Properties.ValueMember = "User Id";

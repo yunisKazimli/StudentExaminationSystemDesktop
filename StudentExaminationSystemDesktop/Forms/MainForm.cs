@@ -17,6 +17,8 @@ namespace StudentExaminationSystemDesktop.Forms
         {
             InitializeComponent();
 
+            subFormCtrl = new Controllers.SubFormController(this, childrenFormContainerPanelControl);
+
             OpenEntrance();
         }
     }

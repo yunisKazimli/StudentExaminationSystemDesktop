@@ -21,7 +21,7 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddGroup
 
 		private async void GetNecessaryData()
         {
-			string jsonData = await SendGetAllGroupsUrl();
+			string jsonData = await UrlManager.UrlSender.SendGetAllGroupsUrl(_token);
 
 			FillAllgroupsName(jsonData);
 		}
@@ -34,72 +34,9 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddGroup
 				throw new BaseException("Group with this name already havs been created", "Empty field");
 		}
 
-		private async void SendAddGroupUrl()
+		private void SendUrl()
 		{
-			try
-			{
-				using (UrlBuilder urlBuilder = new UrlBuilder())
-				{
-					UrlParameterContainer parameters = new UrlParameterContainer();
-
-					parameters.AddParameter("data", new GroupDTO() { GroupName = groupTextEdit.Text }, false);
-
-					urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-					urlBuilder.UrlAction = "addgroup";
-
-					urlBuilder.Token = _token;
-
-					urlBuilder.Method = HttpRequestTypeEnum.Post;
-
-					urlBuilder.Parameters = parameters;
-
-					urlBuilder.GenerateUrl();
-
-					await urlBuilder.SubmitRequestAsync();
-				}
-			}
-			catch (BaseException be)
-			{
-				XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-			catch (Exception be)
-			{
-				XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-
-		private async Task<string> SendGetAllGroupsUrl()
-        {
-			try
-			{
-				using (UrlBuilder urlBuilder = new UrlBuilder())
-				{
-					urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-					urlBuilder.UrlAction = "getallgroups";
-
-					urlBuilder.Token = _token;
-
-					urlBuilder.Method = HttpRequestTypeEnum.Get;
-
-					urlBuilder.GenerateUrl();
-
-					return await urlBuilder.SubmitRequestAsync();
-				}
-			}
-			catch (BaseException be)
-			{
-				XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-				return null;
-			}
-			catch (Exception be)
-			{
-				XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-				return null;
-			}
+			UrlManager.UrlSender.SendAddGroupUrl(_token, new GroupDTO() { GroupName = groupTextEdit.Text });
 		}
 
 		private void FillAllgroupsName(string jsonData)

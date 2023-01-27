@@ -3,6 +3,7 @@ using DevExpress.XtraEditors;
 using Entities.DTOs.Examination.GetDTOs;
 using Entities.DTOs.Identity.GetDTOs;
 using Newtonsoft.Json;
+using StudentExaminationSystemDesktop.DataManager;
 using StudentExaminationSystemDesktop.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,11 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.SubForms
 
         private async void RefreshGroupsGrid()
         {
-            string jsonData = await SendGetlAllGroupsUrl();
-
-            groupsList = JsonConvert.DeserializeObject<List<GroupGetDTO>>(jsonData);
+            groupsList = await DataGetter.GetGroups(_token);
 
             FillGroupsGrid();
+
+            if (groupsList.Count > 0) RefreshUsersGrid();
         }
 
         private void RefreshUsersGrid()
@@ -43,39 +44,6 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.SubForms
             foreach(UserGetDTO el in currentGroup.Students) users.Rows.Add(el.UserId, el.UserName);
 
             userInGroupGridControl.DataSource = users;
-        }
-
-        private async Task<string> SendGetlAllGroupsUrl()
-        {
-            try
-            {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "getallgroups";
-
-                    urlBuilder.Token = _token;
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Get;
-
-                    urlBuilder.GenerateUrl();
-
-                    return await urlBuilder.SubmitRequestAsync();
-                }
-            }
-            catch (BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
         }
 
         private void FillGroupsGrid()

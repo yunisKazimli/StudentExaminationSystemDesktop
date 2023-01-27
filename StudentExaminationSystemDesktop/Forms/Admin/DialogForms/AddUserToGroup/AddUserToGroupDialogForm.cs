@@ -31,7 +31,7 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddUserToGroup
             {
                 CheckEnteredValues();
 
-                SendAddUserToGroupUrl();
+                SendUrl();
 
                 DialogResult = DialogResult.OK;
             }

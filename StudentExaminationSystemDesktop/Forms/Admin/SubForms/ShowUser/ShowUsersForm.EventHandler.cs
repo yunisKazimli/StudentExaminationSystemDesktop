@@ -19,46 +19,9 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.SubForms
     {
         private async void GridRefresh()
         {
-            string jsonData = await SendGetAllUsersUrl();
-
-            List<UserGetDTO> users = JsonConvert.DeserializeObject<List<UserGetDTO>>(jsonData);
-
-            DataTable usersDt = CreateDataTable(users);
+            DataTable usersDt = CreateDataTable(await DataManager.DataGetter.GetUsers(_token));
 
             FillGrid(usersDt);
-        }
-
-        private async Task<string> SendGetAllUsersUrl()
-        {
-            try
-            {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "getallusers";
-
-                    urlBuilder.Token = _token;
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Get;
-
-                    urlBuilder.GenerateUrl();
-
-                    return await urlBuilder.SubmitRequestAsync();
-                }
-            }
-            catch (BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
         }
 
         private DataTable CreateDataTable(List<UserGetDTO> users)

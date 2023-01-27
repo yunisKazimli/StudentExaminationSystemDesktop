@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entities.DTOs.Identity;
+using StudentExaminationSystemDesktop.Forms.Instructor;
 
 namespace StudentExaminationSystemDesktop.Forms.Login
 {
@@ -43,61 +44,28 @@ namespace StudentExaminationSystemDesktop.Forms.Login
 
         private async void SendUrl()
         {
-            try
+            string data = await UrlManager.UrlSender.SendLoginUrl(new LoginDTO() { Username = userNameTextEdit.Text, Password = passwordTextEdit.Text });
+
+            string token = data.Split(' ')[1];
+
+            string role = data.Split(' ')[0];
+
+            switch (role)
             {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    UrlParameterContainer parameters = new UrlParameterContainer();
-
-                    parameters.AddParameter("data", new LoginDTO() { Username = userNameTextEdit.Text, Password = passwordTextEdit.Text}, false);
-
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "login";
-
-                    urlBuilder.Token = "";
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Post;
-
-                    urlBuilder.Parameters = parameters;
-
-                    urlBuilder.GenerateUrl();
-
-                    string data = await urlBuilder.SubmitRequestAsync();
-
-                    string token = data.Split(' ')[1];
-
-                    string role = data.Split(' ')[0];
-
-                    switch (role)
+                case "Admin":
                     {
-                        case "Admin":
-                            {
-                                _mainForm.OpenForm(new AdminForm(_mainForm, token));
-                                break;
-                            }
-                        case "Instructor":
-                            {
-                                break;
-                            }
-                        case "Student":
-                            {
-                                break;
-                            }
+                        _mainForm.OpenForm(new AdminForm(_mainForm, token));
+                        break;
                     }
-                }
-            }
-            catch(BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
+                case "Instructor":
+                    {
+                        _mainForm.OpenForm(new InstructorForm(_mainForm, token));
+                        break;
+                    }
+                case "Student":
+                    {
+                        break;
+                    }
             }
         }
     }

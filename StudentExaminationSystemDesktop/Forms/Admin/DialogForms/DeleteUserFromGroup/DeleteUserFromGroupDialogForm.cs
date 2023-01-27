@@ -31,7 +31,7 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteUserFrom
             {
                 CheckEnteredData();
 
-                SendDeleteUserFromGroupUrl();
+                SendUrl();
 
                 DialogResult = DialogResult.OK;
             }

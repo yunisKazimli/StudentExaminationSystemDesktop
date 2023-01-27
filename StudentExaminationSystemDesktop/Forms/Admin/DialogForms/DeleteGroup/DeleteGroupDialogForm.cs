@@ -36,7 +36,7 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteGroup
             {
                 CheckEnteredValues();
 
-                SendDeleteGroupUrl();
+                SendUrl();
 
                 DialogResult = DialogResult.OK;
             }

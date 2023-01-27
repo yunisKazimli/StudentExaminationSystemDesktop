@@ -176,6 +176,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataManager\DataGetter.cs" />
     <Compile Include="DTOs\Examination\AllStudentAnswersIdsDTO.cs" />
     <Compile Include="DTOs\Examination\GetDTOs\GroupGetDTO.cs" />
     <Compile Include="DTOs\Examination\GetDTOs\OptionGetDTO.cs" />
@@ -276,6 +277,52 @@
     <Compile Include="AspConnectionManagement\UrlParameterContainer.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
     <Compile Include="Exceptions\BaseParameterException.cs" />
+    <Compile Include="Forms\Controllers\SubFormController.cs" />
+    <Compile Include="Forms\Instructor\DialogForms\AddQuestion\AddQuestionDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Instructor\DialogForms\AddQuestion\AddQuestionDialogForm.Designer.cs">
+      <DependentUpon>AddQuestionDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Instructor\DialogForms\AddQuestion\AddQuestionDialogForm.EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Instructor\DialogForms\DeleteQuestion\DeleteQuestionDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Instructor\DialogForms\DeleteQuestion\DeleteQuestionDialogForm.Designer.cs">
+      <DependentUpon>DeleteQuestionDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Instructor\DialogForms\DeleteQuestion\DeleteQuestionDialogForm.EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Instructor\InstructorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Instructor\InstructorForm.Designer.cs">
+      <DependentUpon>InstructorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Instructor\InstructorForm.EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Instructor\SubForms\Groups\GroupsShowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Instructor\SubForms\Groups\GroupsShowForm.Designer.cs">
+      <DependentUpon>GroupsShowForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Instructor\SubForms\Groups\GroupsShowForm.EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Instructor\SubForms\Questions\QuestionShowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Instructor\SubForms\Questions\QuestionShowForm.Designer.cs">
+      <DependentUpon>QuestionShowForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Instructor\SubForms\Questions\QuestionShowForm.EventHandlerandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Login\EntranceForm.EventHandler.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,6 +343,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UrlManager\UrlSender.cs" />
     <EmbeddedResource Include="Forms\Admin\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -322,6 +370,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\SubForms\ShowUser\ShowUsersForm.resx">
       <DependentUpon>ShowUsersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Instructor\InstructorForm.resx">
+      <DependentUpon>InstructorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Instructor\SubForms\Groups\GroupsShowForm.resx">
+      <DependentUpon>GroupsShowForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login\EntranceForm.resx">
       <DependentUpon>EntranceForm.cs</DependentUpon>

@@ -36,7 +36,7 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddUser
             {
                 CheckEnteredData();
 
-                SendRegisterUrl();
+                SendUrl();
 
                 DialogResult = DialogResult.OK;
             }

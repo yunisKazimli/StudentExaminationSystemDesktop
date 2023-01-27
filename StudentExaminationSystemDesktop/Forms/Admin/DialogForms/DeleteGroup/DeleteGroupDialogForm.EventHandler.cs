@@ -18,9 +18,7 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteGroup
     {
         private async void FillLookUp()
         {
-            string jsonData = await SendGetAllGroupsUrl();
-
-            SetDataToLookUp(jsonData);
+            SetDataToLookUp();
         }
 
         private void CheckEnteredValues()
@@ -28,83 +26,14 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteGroup
             if (groupsLookUpEdit.EditValue == null) throw new BaseException("Choose group", "Empty field");
         }
 
-        private async void SendDeleteGroupUrl()
+        private async void SendUrl()
         {
-            try
-            {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    UrlParameterContainer parameters = new UrlParameterContainer();
-
-                    parameters.AddParameter("groupId", (Guid)groupsLookUpEdit.EditValue, false);
-
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "deletegroupbyid";
-
-                    urlBuilder.Token = _token;
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Get;
-
-                    urlBuilder.Parameters = parameters;
-
-                    urlBuilder.GenerateUrl();
-
-                    await urlBuilder.SubmitRequestAsync();
-                }
-            }
-            catch (BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
-            }
+            UrlManager.UrlSender.SendDeleteGroupUrl(_token, (Guid)groupsLookUpEdit.EditValue);
         }
 
-        private async Task<string> SendGetAllGroupsUrl()
+        private async void SetDataToLookUp()
         {
-            try
-            {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "getallgroups";
-
-                    urlBuilder.Token = _token;
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Get;
-
-                    urlBuilder.GenerateUrl();
-
-                    return await urlBuilder.SubmitRequestAsync();
-                }
-            }
-            catch (BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-        }
-
-        private void SetDataToLookUp(string jsonData)
-        {
-            List<GroupGetDTO> groups = JsonConvert.DeserializeObject<List<GroupGetDTO>>(jsonData);
-
-            groupsLookUpEdit.Properties.DataSource = ConvertJsonToDt(groups);
+            groupsLookUpEdit.Properties.DataSource = ConvertJsonToDt(await DataManager.DataGetter.GetGroups(_token));
 
             groupsLookUpEdit.Properties.ValueMember = "Group Id";
             groupsLookUpEdit.Properties.DisplayMember = "Group Name";

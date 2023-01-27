@@ -1,4 +1,5 @@
-﻿using StudentExaminationSystemDesktop.Forms.Login;
+﻿using StudentExaminationSystemDesktop.Forms.Controllers;
+using StudentExaminationSystemDesktop.Forms.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,32 +11,16 @@ namespace StudentExaminationSystemDesktop.Forms
 {
     partial class MainForm
     {
-        private Form currentChildForm;
+        private SubFormController subFormCtrl;
 
         private void OpenEntrance()
         {
             OpenForm(new EntranceForm(this));
         }
 
-        public void OpenForm(Form newForm)
+        public void OpenForm(Form subForm)
         {
-            if (currentChildForm != null) currentChildForm.Close();
-
-            currentChildForm = newForm;
-
-            currentChildForm.MdiParent = this;
-
-            currentChildForm.Dock = DockStyle.Fill;
-
-            currentChildForm.TopLevel = false;
-
-            currentChildForm.TopMost = true;
-
-            currentChildForm.FormBorderStyle = FormBorderStyle.None;
-
-            currentChildForm.Show();
-
-            childrenFormContainerPanelControl.Controls.Add(currentChildForm);
+            subFormCtrl.OpenForm(subForm);
         }
     }
 }

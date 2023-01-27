@@ -1,6 +1,5 @@
 ﻿using AspConnectionManagement;
 using DevExpress.XtraEditors;
-using Entities.DTOs.Examination;
 using Entities.DTOs.Examination.GetDTOs;
 using Entities.DTOs.Identity.GetDTOs;
 using Newtonsoft.Json;
@@ -9,10 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DevExpress.XtraEditors.Mask.MaskSettings;
 
 namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteUserFromGroup
 {
@@ -36,124 +33,19 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteUserFrom
             if (userLookUpEdit.EditValue == null) throw new BaseException("Choose user", "Empty value");
         }
 
-        private async void SendDeleteUserFromGroupUrl()
+        private async void SendUrl()
         {
-            try
-            {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    UrlParameterContainer parameters = new UrlParameterContainer();
-
-                    parameters.AddParameter("GroupId", (Guid)groupLookUpEdit.EditValue, false);
-                    parameters.AddParameter("UserId", (Guid)userLookUpEdit.EditValue, false);
-
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "deleteuserfromgroup";
-
-                    urlBuilder.Token = _token;
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Get;
-
-                    urlBuilder.Parameters = parameters;
-
-                    urlBuilder.GenerateUrl();
-
-                    await urlBuilder.SubmitRequestAsync();
-                }
-            }
-            catch (BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
-            }
-        }
-
-        private async Task<string> SendGetAllGroupsUrl()
-        {
-            try
-            {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "getallgroups";
-
-                    urlBuilder.Token = _token;
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Get;
-
-                    urlBuilder.GenerateUrl();
-
-                    return await urlBuilder.SubmitRequestAsync();
-                }
-            }
-            catch (BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-        }
-
-        private async Task<string> SendGetAllUsersUrl()
-        {
-            try
-            {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "getallusers";
-
-                    urlBuilder.Token = _token;
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Get;
-
-                    urlBuilder.GenerateUrl();
-
-                    return await urlBuilder.SubmitRequestAsync();
-                }
-            }
-            catch (BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
+            UrlManager.UrlSender.SendDeleteUserFromGroupUrl(_token, (Guid)groupLookUpEdit.EditValue, (Guid)userLookUpEdit.EditValue);
         }
 
         private async Task FillGroupList()
         {
-            string json = await SendGetAllGroupsUrl();
-
-            groupList = JsonConvert.DeserializeObject<List<GroupGetDTO>>(json);
+            groupList = await DataManager.DataGetter.GetGroups(_token);
         }
 
         private async Task FillUserList()
         {
-            string json = await SendGetAllUsersUrl();
-
-            userList = JsonConvert.DeserializeObject<List<UserGetDTO>>(json);
+            userList = await DataManager.DataGetter.GetUsers(_token);
         }
 
         private void FillGroupLookUp()

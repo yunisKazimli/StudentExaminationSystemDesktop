@@ -23,6 +23,8 @@ namespace StudentExaminationSystemDesktop.Forms.Admin
 
             _mainForm = mainForm;
             _token = token;
+
+            subFormCtrl = new Controllers.SubFormController(_mainForm, subFormPanelControl);
         }
 
         private void logoutBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)

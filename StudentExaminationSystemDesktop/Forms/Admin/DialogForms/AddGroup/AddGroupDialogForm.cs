@@ -36,7 +36,7 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddGroup
             {
                 CheckEnteredData();
 
-                SendAddGroupUrl();
+                SendUrl();
 
                 DialogResult = DialogResult.OK;
             }

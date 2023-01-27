@@ -21,9 +21,9 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddUser
 
         private async void GetNeccessaryData()
         {
-            string usersJsonData = await SendGetAllUsersUrl();
+            string usersJsonData = await UrlManager.UrlSender.SendGetAllUsersUrl(_token);
 
-            string rolesJsonData = await SendGetAllRolesUrl();
+            string rolesJsonData = await UrlManager.UrlSender.SendGetAllRolesUrl(_token);
 
             allUserNames = GetUserNameStringList(usersJsonData);
 
@@ -44,109 +44,9 @@ namespace StudentExaminationSystemDesktop.Forms.Admin.DialogForms.AddUser
             if(allUserNames.Find(el => el == userNameTextEdit.Text) != null) throw new BaseParameterException("user with this userName already registered", "Empty field");
         }
 
-        private async Task<string> SendGetAllUsersUrl()
+        private void SendUrl()
         {
-            try
-            {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "getallusers";
-
-                    urlBuilder.Token = _token;
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Get;
-
-                    urlBuilder.GenerateUrl();
-
-                    return await urlBuilder.SubmitRequestAsync();
-                }
-            }
-            catch (BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-        }
-
-        private async Task<string> SendGetAllRolesUrl()
-        {
-            try
-            {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "getallroles";
-
-                    urlBuilder.Token = _token;
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Get;
-
-                    urlBuilder.GenerateUrl();
-
-                    return await urlBuilder.SubmitRequestAsync();
-                }
-            }
-            catch (BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return null;
-            }
-        }
-
-        private async void SendRegisterUrl()
-        {
-            try
-            {
-                using (UrlBuilder urlBuilder = new UrlBuilder())
-                {
-                    UrlParameterContainer parameters = new UrlParameterContainer();
-
-                    parameters.AddParameter("data", new RegisterDTO() { Username = userNameTextEdit.Text, Password = passwordTextEdit.Text, PasswordConfirm = passwordTextEdit.Text, RoleId = roles[roleComboBoxEdit.Text].ToString() }, false);
-
-                    urlBuilder.UrlStartPart = "https://localhost:7199/";
-
-                    urlBuilder.UrlAction = "register";
-
-                    urlBuilder.Token = _token;
-
-                    urlBuilder.Method = HttpRequestTypeEnum.Post;
-
-                    urlBuilder.Parameters = parameters;
-
-                    urlBuilder.GenerateUrl();
-
-                    await urlBuilder.SubmitRequestAsync();
-                }
-            }
-            catch (BaseException be)
-            {
-                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
-            }
-            catch (Exception be)
-            {
-                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
-            }
+            UrlManager.UrlSender.SendRegisterUrl(_token, new RegisterDTO() { Username = userNameTextEdit.Text, Password = passwordTextEdit.Text, PasswordConfirm = passwordTextEdit.Text, RoleId = roles[roleComboBoxEdit.Text].ToString() });
         }
 
         private List<string> GetUserNameStringList(string jsonData)

@@ -5,6 +5,7 @@ using StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteGroup;
 using StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteUser;
 using StudentExaminationSystemDesktop.Forms.Admin.DialogForms.DeleteUserFromGroup;
 using StudentExaminationSystemDesktop.Forms.Admin.SubForms;
+using StudentExaminationSystemDesktop.Forms.Controllers;
 using StudentExaminationSystemDesktop.Forms.Login;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace StudentExaminationSystemDesktop.Forms.Admin
 {
     public partial class AdminForm
     {
-        private Form subForm;
+        private SubFormController subFormCtrl;
 
         private void Logout()
         {
@@ -26,86 +27,54 @@ namespace StudentExaminationSystemDesktop.Forms.Admin
 
         private void ShowUsers()
         {
-            if (subForm != null) subForm.Close();
-
-            OpenForm(new ShowUsersForm(_token));
+            subFormCtrl.OpenForm(new ShowUsersForm(_token));
         }
 
         private void AddUser()
         {
             AddUserDialogForm addUserDialogForm = new AddUserDialogForm(_token);
 
-            if (addUserDialogForm.ShowDialog() == DialogResult.OK) RefreshSubForm();
+            if (addUserDialogForm.ShowDialog() == DialogResult.OK) subFormCtrl.OpenForm(new ShowUsersForm(_token));
         }
 
         private void DeleteUser()
         {
             DeleteUserDialogForm deleteUserDialogForm = new DeleteUserDialogForm(_token);
 
-            if (deleteUserDialogForm.ShowDialog() == DialogResult.OK) RefreshSubForm();
+            if (deleteUserDialogForm.ShowDialog() == DialogResult.OK) subFormCtrl.OpenForm(new ShowUsersForm(_token));
         }
 
         private void AddGroup()
         {
             AddGroupDialogForm addGroupDialogForm = new AddGroupDialogForm(_token);
 
-            if (addGroupDialogForm.ShowDialog() == DialogResult.OK) RefreshSubForm();
+            if (addGroupDialogForm.ShowDialog() == DialogResult.OK) subFormCtrl.OpenForm(new ShowGroupsForm(_token));
         }
 
         private void DeleteGroup()
         {
             DeleteGroupDialogForm deleteGroupDialogForm = new DeleteGroupDialogForm(_token);
 
-            if (deleteGroupDialogForm.ShowDialog() == DialogResult.OK) RefreshSubForm();
+            if (deleteGroupDialogForm.ShowDialog() == DialogResult.OK) subFormCtrl.OpenForm(new ShowGroupsForm(_token));
         }
 
         private void AddUserToGroup()
         {
             AddUserToGroupDialogForm addUserToGroupDialogForm = new AddUserToGroupDialogForm(_token);
 
-            if (addUserToGroupDialogForm.ShowDialog() == DialogResult.OK) RefreshSubForm();
+            if (addUserToGroupDialogForm.ShowDialog() == DialogResult.OK) subFormCtrl.OpenForm(new ShowGroupsForm(_token));
         }
 
         private void DeleteUserFromGroup()
         {
             DeleteUserFromGroupDialogForm deleteUserToGroupDialogForm = new DeleteUserFromGroupDialogForm(_token);
 
-            if (deleteUserToGroupDialogForm.ShowDialog() == DialogResult.OK) RefreshSubForm();
+            if (deleteUserToGroupDialogForm.ShowDialog() == DialogResult.OK) subFormCtrl.OpenForm(new ShowGroupsForm(_token));
         }
 
         private void ShowGroups()
         {
-            OpenForm(new ShowGroupsForm(_token));
-        }
-
-        private void OpenForm(Form newSubForm)
-        {
-            if (subForm != null) subForm.Close();
-
-            subForm = newSubForm;
-
-            subForm.MdiParent = MdiParent;
-
-            subForm.Dock = DockStyle.Fill;
-
-            subForm.TopLevel = false;
-
-            subForm.TopMost = true;
-
-            subForm.FormBorderStyle = FormBorderStyle.None;
-
-            subForm.Show();
-
-            subFormPanelControl.Controls.Add(subForm);
-        }
-
-        private void RefreshSubForm()
-        {
-            if (subForm != null)
-            {
-                if (subForm is ShowGroupsForm) ShowGroups();
-                else ShowUsers();
-            }
+            subFormCtrl.OpenForm(new ShowGroupsForm(_token));
         }
     }
 }
