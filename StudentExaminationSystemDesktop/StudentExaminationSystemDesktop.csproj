@@ -278,6 +278,15 @@
     <Compile Include="Exceptions\BaseException.cs" />
     <Compile Include="Exceptions\BaseParameterException.cs" />
     <Compile Include="Forms\Controllers\SubFormController.cs" />
+    <Compile Include="Forms\Instructor\DialogForms\AddQuestion\AddOneQuestion\AddOneQuestionDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Instructor\DialogForms\AddQuestion\AddOneQuestion\AddOneQuestionDialogForm.Designer.cs">
+      <DependentUpon>AddOneQuestionDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Instructor\DialogForms\AddQuestion\AddOneQuestion\AddOneQuestionDialogForm.EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Instructor\DialogForms\AddQuestion\AddQuestionDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,11 +380,20 @@
     <EmbeddedResource Include="Forms\Admin\SubForms\ShowUser\ShowUsersForm.resx">
       <DependentUpon>ShowUsersForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Instructor\DialogForms\AddQuestion\AddOneQuestion\AddOneQuestionDialogForm.resx">
+      <DependentUpon>AddOneQuestionDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Instructor\DialogForms\AddQuestion\AddQuestionDialogForm.resx">
+      <DependentUpon>AddQuestionDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Instructor\InstructorForm.resx">
       <DependentUpon>InstructorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Instructor\SubForms\Groups\GroupsShowForm.resx">
       <DependentUpon>GroupsShowForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Instructor\SubForms\Questions\QuestionShowForm.resx">
+      <DependentUpon>QuestionShowForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login\EntranceForm.resx">
       <DependentUpon>EntranceForm.cs</DependentUpon>

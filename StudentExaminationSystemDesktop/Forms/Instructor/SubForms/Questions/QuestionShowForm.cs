@@ -20,6 +20,18 @@ namespace StudentExaminationSystemDesktop.Forms.Instructor.SubForms.Questions
             _token = token;
 
             InitializeComponent();
+
+            FillGroupsGrid();
+        }
+
+        private void groupsGridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            FillQuestionGrid();
+        }
+
+        private void questionsGridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            FillOptionGrid();
         }
     }
 }

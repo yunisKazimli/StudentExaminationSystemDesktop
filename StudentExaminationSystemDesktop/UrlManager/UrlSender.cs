@@ -1,4 +1,5 @@
 ﻿using AspConnectionManagement;
+using DevExpress.ClipboardSource.SpreadsheetML;
 using DevExpress.XtraEditors;
 using Entities.DTOs.Examination;
 using Entities.DTOs.Identity;
@@ -93,6 +94,45 @@ namespace StudentExaminationSystemDesktop.UrlManager
                     urlBuilder.Token = token;
 
                     urlBuilder.Method = HttpRequestTypeEnum.Get;
+
+                    urlBuilder.GenerateUrl();
+
+                    return await urlBuilder.SubmitRequestAsync();
+                }
+            }
+            catch (BaseException be)
+            {
+                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return null;
+            }
+            catch (Exception be)
+            {
+                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return null;
+            }
+        }
+
+        public static async Task<string> SendGetAllQuestionsUrl(string token, Guid data)
+        {
+            try
+            {
+                using (UrlBuilder urlBuilder = new UrlBuilder())
+                {
+                    UrlParameterContainer parameters = new UrlParameterContainer();
+
+                    parameters.AddParameter("GroupId", data, false);
+
+                    urlBuilder.UrlStartPart = "https://localhost:7199/";
+
+                    urlBuilder.UrlAction = "getallquestions";
+
+                    urlBuilder.Token = token;
+
+                    urlBuilder.Method = HttpRequestTypeEnum.Get;
+
+                    urlBuilder.Parameters = parameters;
 
                     urlBuilder.GenerateUrl();
 
@@ -262,6 +302,41 @@ namespace StudentExaminationSystemDesktop.UrlManager
                 XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
+            }
+        }
+
+        public static async void SendAddQuestionUrl(string token, List<QuestionDTO> data)
+        {
+            try
+            {
+                using (UrlBuilder urlBuilder = new UrlBuilder())
+                {
+                    UrlParameterContainer parameters = new UrlParameterContainer();
+
+                    parameters.AddParameter("data", data, false);
+
+                    urlBuilder.UrlStartPart = "https://localhost:7199/";
+
+                    urlBuilder.UrlAction = "addquestions";
+
+                    urlBuilder.Token = token;
+
+                    urlBuilder.Method = HttpRequestTypeEnum.Post;
+
+                    urlBuilder.Parameters = parameters;
+
+                    urlBuilder.GenerateUrl();
+
+                    await urlBuilder.SubmitRequestAsync();
+                }
+            }
+            catch (BaseException be)
+            {
+                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception be)
+            {
+                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
