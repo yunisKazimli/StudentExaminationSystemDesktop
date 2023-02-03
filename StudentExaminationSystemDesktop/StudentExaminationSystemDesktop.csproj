@@ -178,6 +178,7 @@
   <ItemGroup>
     <Compile Include="DataManager\DataGetter.cs" />
     <Compile Include="DTOs\Examination\AllStudentAnswersIdsDTO.cs" />
+    <Compile Include="DTOs\Examination\DeleteQuestionDTO.cs" />
     <Compile Include="DTOs\Examination\GetDTOs\GroupGetDTO.cs" />
     <Compile Include="DTOs\Examination\GetDTOs\OptionGetDTO.cs" />
     <Compile Include="DTOs\Examination\GetDTOs\QuestionGetDTO.cs" />
@@ -385,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Instructor\DialogForms\AddQuestion\AddQuestionDialogForm.resx">
       <DependentUpon>AddQuestionDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Instructor\DialogForms\DeleteQuestion\DeleteQuestionDialogForm.resx">
+      <DependentUpon>DeleteQuestionDialogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Instructor\InstructorForm.resx">
       <DependentUpon>InstructorForm.cs</DependentUpon>

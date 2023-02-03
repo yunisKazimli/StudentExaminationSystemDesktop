@@ -457,5 +457,45 @@ namespace StudentExaminationSystemDesktop.UrlManager
                 return;
             }
         }
+
+        public static async void SendDeleteQuestionUrl(string token, Guid data1, Guid data2)
+        {
+            try
+            {
+                using (UrlBuilder urlBuilder = new UrlBuilder())
+                {
+                    UrlParameterContainer parameters = new UrlParameterContainer();
+
+                    parameters.AddParameter("GroupId", data1, false);
+                    parameters.AddParameter("QuestionId", data2, false);
+
+                    urlBuilder.UrlStartPart = "https://localhost:7199/";
+
+                    urlBuilder.UrlAction = "deletequestion";
+
+                    urlBuilder.Token = token;
+
+                    urlBuilder.Method = HttpRequestTypeEnum.Get;
+
+                    urlBuilder.Parameters = parameters;
+
+                    urlBuilder.GenerateUrl();
+
+                    await urlBuilder.SubmitRequestAsync();
+                }
+            }
+            catch (BaseException be)
+            {
+                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+            catch (Exception be)
+            {
+                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+        }
     }
 }
