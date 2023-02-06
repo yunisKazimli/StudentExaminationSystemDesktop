@@ -1,6 +1,6 @@
-﻿namespace StudentExaminationSystemDesktop.Forms.Instructor.SubForms.Groups
+﻿namespace StudentExaminationSystemDesktop.Forms.Instructor.DialogForms.ShowAnswers
 {
-    partial class GroupsShowForm
+    partial class ShowAnswersDialogForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.usersGridControl = new DevExpress.XtraGrid.GridControl();
-            this.usersGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.groupsGridControl = new DevExpress.XtraGrid.GridControl();
-            this.groupsGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.optionsGridControl = new DevExpress.XtraGrid.GridControl();
+            this.optionsGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.answersGridControl = new DevExpress.XtraGrid.GridControl();
+            this.answersGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.usersGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupsGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupsGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.optionsGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.optionsGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.answersGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.answersGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -49,47 +49,46 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.usersGridControl);
-            this.layoutControl1.Controls.Add(this.groupsGridControl);
+            this.layoutControl1.Controls.Add(this.optionsGridControl);
+            this.layoutControl1.Controls.Add(this.answersGridControl);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(848, 412);
+            this.layoutControl1.Size = new System.Drawing.Size(915, 441);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // usersGridControl
+            // optionsGridControl
             // 
-            this.usersGridControl.Location = new System.Drawing.Point(419, 12);
-            this.usersGridControl.MainView = this.usersGridView;
-            this.usersGridControl.Name = "usersGridControl";
-            this.usersGridControl.Size = new System.Drawing.Size(417, 388);
-            this.usersGridControl.TabIndex = 5;
-            this.usersGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.usersGridView});
+            this.optionsGridControl.Location = new System.Drawing.Point(459, 12);
+            this.optionsGridControl.MainView = this.optionsGridView;
+            this.optionsGridControl.Name = "optionsGridControl";
+            this.optionsGridControl.Size = new System.Drawing.Size(444, 417);
+            this.optionsGridControl.TabIndex = 5;
+            this.optionsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.optionsGridView});
             // 
-            // usersGridView
+            // optionsGridView
             // 
-            this.usersGridView.GridControl = this.usersGridControl;
-            this.usersGridView.Name = "usersGridView";
-            this.usersGridView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.usersGridView_RowClick);
+            this.optionsGridView.GridControl = this.optionsGridControl;
+            this.optionsGridView.Name = "optionsGridView";
             // 
-            // groupsGridControl
+            // answersGridControl
             // 
-            this.groupsGridControl.Location = new System.Drawing.Point(12, 12);
-            this.groupsGridControl.MainView = this.groupsGridView;
-            this.groupsGridControl.Name = "groupsGridControl";
-            this.groupsGridControl.Size = new System.Drawing.Size(403, 388);
-            this.groupsGridControl.TabIndex = 4;
-            this.groupsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.groupsGridView});
+            this.answersGridControl.Location = new System.Drawing.Point(12, 12);
+            this.answersGridControl.MainView = this.answersGridView;
+            this.answersGridControl.Name = "answersGridControl";
+            this.answersGridControl.Size = new System.Drawing.Size(443, 417);
+            this.answersGridControl.TabIndex = 4;
+            this.answersGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.answersGridView});
             // 
-            // groupsGridView
+            // answersGridView
             // 
-            this.groupsGridView.GridControl = this.groupsGridControl;
-            this.groupsGridView.Name = "groupsGridView";
-            this.groupsGridView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.groupsGridView_FocusedRowChanged);
+            this.answersGridView.GridControl = this.answersGridControl;
+            this.answersGridView.Name = "answersGridView";
+            this.answersGridView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.answersGridView_FocusedRowChanged);
             // 
             // Root
             // 
@@ -99,41 +98,41 @@
             this.layoutControlItem1,
             this.layoutControlItem2});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(848, 412);
+            this.Root.Size = new System.Drawing.Size(915, 441);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.groupsGridControl;
+            this.layoutControlItem1.Control = this.answersGridControl;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(407, 392);
+            this.layoutControlItem1.Size = new System.Drawing.Size(447, 421);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
-            this.layoutControlItem2.Control = this.usersGridControl;
-            this.layoutControlItem2.Location = new System.Drawing.Point(407, 0);
+            this.layoutControlItem2.Control = this.optionsGridControl;
+            this.layoutControlItem2.Location = new System.Drawing.Point(447, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(421, 392);
+            this.layoutControlItem2.Size = new System.Drawing.Size(448, 421);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
-            // GroupsShowForm
+            // ShowAnswersDialogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(848, 412);
+            this.ClientSize = new System.Drawing.Size(915, 441);
             this.Controls.Add(this.layoutControl1);
-            this.Name = "GroupsShowForm";
-            this.Text = "GroupsShowForm";
+            this.Name = "ShowAnswersDialogForm";
+            this.Text = "ShowAnswersDialogForm";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.usersGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupsGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupsGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.optionsGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.optionsGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.answersGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.answersGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -144,12 +143,12 @@
         #endregion
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
+        private DevExpress.XtraGrid.GridControl answersGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView answersGridView;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraGrid.GridControl usersGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView usersGridView;
-        private DevExpress.XtraGrid.GridControl groupsGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView groupsGridView;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraGrid.GridControl optionsGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView optionsGridView;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
     }
 }

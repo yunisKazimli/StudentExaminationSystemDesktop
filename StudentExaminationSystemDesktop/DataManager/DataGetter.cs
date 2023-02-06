@@ -1,4 +1,5 @@
-﻿using Entities.DTOs.Examination.GetDTOs;
+﻿using DevExpress.ClipboardSource.SpreadsheetML;
+using Entities.DTOs.Examination.GetDTOs;
 using Entities.DTOs.Identity.GetDTOs;
 using Newtonsoft.Json;
 using StudentExaminationSystemDesktop.UrlManager;
@@ -29,6 +30,13 @@ namespace StudentExaminationSystemDesktop.DataManager
             string json = await UrlSender.SendGetAllQuestionsUrl(token, data);
 
             return JsonConvert.DeserializeObject<List<QuestionGetDTO>>(json);
+        }
+
+        public static async Task<List<StudentAnswerGetDTO>> GetStudentAnswers(string token, Guid data1, Guid data2)
+        {
+            string json = await UrlSender.SendGetAllAnswersUrl(token, data1, data2);
+
+            return JsonConvert.DeserializeObject<List<StudentAnswerGetDTO>>(json);
         }
     }
 }

@@ -16,6 +16,8 @@ namespace StudentExaminationSystemDesktop.Forms.Instructor.DialogForms.AddQuesti
                 throw new BaseException("Enter question body", "Empty value");
             if (_alreadyAddedQuestion.Contains(questionBodyTextEdit.Text))
                 throw new BaseException("This question body already added", "Ununique value");
+            if (optionsGridView.DataRowCount < 2)
+                throw new BaseException("Add at least 2 options", "Not Enought values");
         }
 
         private void AddOption()

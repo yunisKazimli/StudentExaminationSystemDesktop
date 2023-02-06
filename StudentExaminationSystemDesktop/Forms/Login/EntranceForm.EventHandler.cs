@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entities.DTOs.Identity;
 using StudentExaminationSystemDesktop.Forms.Instructor;
+using StudentExaminationSystemDesktop.Forms.Student;
 
 namespace StudentExaminationSystemDesktop.Forms.Login
 {
@@ -46,6 +47,8 @@ namespace StudentExaminationSystemDesktop.Forms.Login
         {
             string data = await UrlManager.UrlSender.SendLoginUrl(new LoginDTO() { Username = userNameTextEdit.Text, Password = passwordTextEdit.Text });
 
+            if (data == "" || data == null) return;
+
             string token = data.Split(' ')[1];
 
             string role = data.Split(' ')[0];
@@ -64,6 +67,9 @@ namespace StudentExaminationSystemDesktop.Forms.Login
                     }
                 case "Student":
                     {
+                        Guid id = new Guid(data.Split(' ')[2]);
+
+                        _mainForm.OpenForm(new StudentForm(_mainForm, token, id));
                         break;
                     }
             }

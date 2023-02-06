@@ -153,6 +153,46 @@ namespace StudentExaminationSystemDesktop.UrlManager
             }
         }
 
+        public static async Task<string> SendGetAllAnswersUrl(string token, Guid data1, Guid data2)
+        {
+            try
+            {
+                using (UrlBuilder urlBuilder = new UrlBuilder())
+                {
+                    UrlParameterContainer parameters = new UrlParameterContainer();
+
+                    parameters.AddParameter("GroupId", data1, false);
+                    parameters.AddParameter("StudentId", data2, false);
+
+                    urlBuilder.UrlStartPart = "https://localhost:7199/";
+
+                    urlBuilder.UrlAction = "getallstudentanswers";
+
+                    urlBuilder.Token = token;
+
+                    urlBuilder.Method = HttpRequestTypeEnum.Get;
+
+                    urlBuilder.Parameters = parameters;
+
+                    urlBuilder.GenerateUrl();
+
+                    return await urlBuilder.SubmitRequestAsync();
+                }
+            }
+            catch (BaseException be)
+            {
+                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return null;
+            }
+            catch (Exception be)
+            {
+                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return null;
+            }
+        }
+
         public static async Task<string> SendLoginUrl(LoginDTO data)
         {
             try
@@ -318,6 +358,41 @@ namespace StudentExaminationSystemDesktop.UrlManager
                     urlBuilder.UrlStartPart = "https://localhost:7199/";
 
                     urlBuilder.UrlAction = "addquestions";
+
+                    urlBuilder.Token = token;
+
+                    urlBuilder.Method = HttpRequestTypeEnum.Post;
+
+                    urlBuilder.Parameters = parameters;
+
+                    urlBuilder.GenerateUrl();
+
+                    await urlBuilder.SubmitRequestAsync();
+                }
+            }
+            catch (BaseException be)
+            {
+                XtraMessageBox.Show(be.Message, be.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception be)
+            {
+                XtraMessageBox.Show(be.Message, "Unexpected exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public static async void SendAddStudentAnswersUrl(string token, StudentAnswerDTO data)
+        {
+            try
+            {
+                using (UrlBuilder urlBuilder = new UrlBuilder())
+                {
+                    UrlParameterContainer parameters = new UrlParameterContainer();
+
+                    parameters.AddParameter("data", data, false);
+
+                    urlBuilder.UrlStartPart = "https://localhost:7199/";
+
+                    urlBuilder.UrlAction = "addstudentanswer";
 
                     urlBuilder.Token = token;
 
